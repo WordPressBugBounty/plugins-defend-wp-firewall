@@ -1,0 +1,25 @@
+.dfwp-success,
+.dfwp-error,
+.dfwp-pro-install {
+    display: none;
+}
+
+.dfwp-loading {
+    display: block;
+}
+
+.dwp_logs_wrapper td {
+    vertical-align: top;
+}
+
+.collapsed_vars_cont_dwp {
+    width: 440px;
+}
+
+.log_row_hidden_dfwp {
+    display: none;
+}
+
+fieldset {
+    border: inherit;
+}
