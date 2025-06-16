@@ -690,3 +690,30 @@ function defend_wp_firewall_collect_urls() {
 		'home_url' => home_url(),
 	);
 }
+
+function defend_wp_firewall_get_live_vulnerabilities_count() {
+
+	$url      = DEFEND_WP_FIREWALL_SERVICE_CDN_URL . '/rules_count/';
+	$response = wp_remote_get(
+		$url,
+		array(
+			'timeout' => 10,
+			'headers' => array(
+				'Accept' => 'application/json',
+			),
+		)
+	);
+	if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+		return 0;
+	}
+	$body = wp_remote_retrieve_body( $response );
+	if ( empty( $body ) ) {
+		return 0;
+	}
+
+	$data = json_decode( $body, true );
+	if ( ! is_array( $data ) || empty( $data['total_rules'] ) ) {
+		return 0;
+	}
+	return (int) $data['total_rules'];
+}

@@ -3,8 +3,8 @@
 Contributors: dark-prince, rajkuppus, amritanandh, Revmakx
 Tags: security, vulnerability, malware, performance
 Requires at least: 6.2.0
-Tested up to: 6.7.2
-Stable tag: 1.1.5
+Tested up to: 6.8.1
+Stable tag: 1.1.6
 Requires PHP: 8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -101,6 +101,12 @@ Unlike other security companies that offer early protection only to their premiu
 No, our plugin works alongside official patches from developers. It provides temporary protection through firewall rules or patches until the official update is applied, ensuring that users are not left vulnerable during the critical window between disclosure and patch adoption.
 
 == Changelog ==
+
+= 1.1.6 =
+*Release Date - 16 June 2025*
+
+Improvement: Firewall rules mechanism improved.
+Improvement: UI improved.
 
 = 1.1.5 =
 *Release Date - 5 May 2025*

@@ -50,6 +50,7 @@ class Defend_WP_Firewall {
 	}
 
 	public function run() {
+		$this->set_plugin_priority();
 		new Defend_WP_Firewall_Activation_Controller();
 
 		$this->load_dependencies();
@@ -82,6 +83,7 @@ class Defend_WP_Firewall {
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-defend-wp-firewall-logs.php';
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-defend-wp-firewall-ip-address.php';
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-defend-wp-firewall-anonymous.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-defend-wp-firewall-rules-manager.php';
 		require_once plugin_dir_path( __DIR__ ) . 'functions/base-functions.php';
 		require_once plugin_dir_path( __DIR__ ) . 'functions/cookie-functions.php';
 		require_once plugin_dir_path( __DIR__ ) . 'hooks/blocklist-functions.php';
@@ -109,6 +111,10 @@ class Defend_WP_Firewall {
 		require_once plugin_dir_path( __DIR__ ) . 'functions/remove-action-filter.php';
 		require_once plugin_dir_path( __DIR__ ) . 'hooks/run-functions.php';
 		require_once plugin_dir_path( __DIR__ ) . 'functions/run-functions.php';
+		require_once plugin_dir_path( __DIR__ ) . 'hooks/index-write-functions.php';
+		require_once plugin_dir_path( __DIR__ ) . 'functions/index-write-functions.php';
+		require_once plugin_dir_path( __DIR__ ) . 'hooks/add-action-filters-functions.php';
+		require_once plugin_dir_path( __DIR__ ) . 'functions/add-action-filters-functions.php';
 
 		require_once plugin_dir_path( __DIR__ ) . 'admin/class-defend-wp-firewall-admin.php';
 		require_once plugin_dir_path( __DIR__ ) . 'admin/class-defend-wp-firewall-settings.php';
@@ -163,6 +169,12 @@ class Defend_WP_Firewall {
 		$defend_functions = new Defend_WP_Firewall_Run_Functions_Hooks();
 		$defend_functions->define_hooks();
 
+		$defend_functions = new Defend_WP_Firewall_Index_Write_Functions_Hooks();
+		$defend_functions->define_hooks();
+
+		$defend_functions = new Defend_WP_Firewall_Add_Action_Filter_Functions_Hooks();
+		$defend_functions->define_hooks();
+
 		new Defend_WP_Firewall_Anonymous();
 
 		if ( is_admin() ) {
@@ -190,5 +202,22 @@ class Defend_WP_Firewall {
 	}
 	public function activation() {
 		set_transient( 'defend_wp_firewall_setting_redirect_on_activation', true, 30 );
+	}
+
+	private function set_plugin_priority() {
+		$active_plugins = get_option( 'active_plugins' );
+		if ( ! is_array( $active_plugins ) ) {
+			return;
+		}
+
+		$plugin_basename = 'defend-wp-firewall/defend-wp-firewall.php';
+		$plugin_key      = array_search( $plugin_basename, $active_plugins );
+
+		// If the plugin is found, move it to the first position
+		if ( $plugin_key !== false ) {
+			unset( $active_plugins[ $plugin_key ] );
+			array_unshift( $active_plugins, $plugin_basename );
+			update_option( 'active_plugins', array_values( $active_plugins ) );
+		}
 	}
 }

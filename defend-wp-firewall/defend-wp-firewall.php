@@ -10,7 +10,7 @@
  * Plugin Name:       DefendWP Firewall
  * Plugin URI:        https://defendwp.org
  * Description:       Defend your WordPress sites with free instant patches for disclosed vulnerabilities in the WP core, plugins and themes.
- * Version:           1.1.5
+ * Version:           1.1.6
  * Author:            Revmakx
  * Author URI:        https://revmakx.com
  * License:           GPL-2.0+

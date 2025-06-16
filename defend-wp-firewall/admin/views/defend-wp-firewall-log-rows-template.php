@@ -33,7 +33,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 				break;
 			}
 			if ( $this_same_row_count > 0 ) {
-				$this_same_row_div = '<div class=" expand_log_row_dfwp text-xs text-lime-600 cursor-pointer mt-1 " parent_prev_id="' . $value['id'] . '" >Show ' . $this_same_row_count . ' more</div>';
+				$this_same_row_div = '<div class=" expand_log_row_dfwp text-xs text-yellow-600 cursor-pointer mt-1 " parent_prev_id="' . $value['id'] . '" >Show ' . $this_same_row_count . ' more</div>';
 			}
 		}
 
@@ -68,7 +68,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 		</td>
 		<td class="hidden py-5 pr-6 sm:table-cell">
 			<div class="text-xs leading-4 text-gray-900 py-1 font-mono break-words" style="width:150px;"><?php echo esc_html( $value['source_ip'] ); ?></div>
-			<div class="dfwp_whitelist_ip_from_log mt-1 text-xs leading-5 text-lime-600 hover:underline cursor-pointer whitespace-nowrap">Whitelist IP</div>
+			<div class="dfwp_whitelist_ip_from_log mt-1 text-xs leading-5 text-yellow-600 hover:underline cursor-pointer whitespace-nowrap">Whitelist IP</div>
 		</td>
 		<td class="py-5">
 			<div class="flex">
@@ -93,7 +93,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 						<?php if ( empty( $value['extra'] ) ) { ?> 
 
 								<div class="pt-2 mt-2 border-t">REQUEST: [</div>
-									<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-lime-200 -mx-2 px-2 mb-1 border-l border-r">
+									<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-yellow`-200 -mx-2 px-2 mb-1 border-l border-r">
 										<div class="px-2 py-1 w-full break-all"><?php echo esc_html( $value_extra_full_str ); ?>
 										</div>
 									</div>
@@ -111,7 +111,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 								if ( is_string( $value['extra']['POST'] ) ) {
 									$vv = $value['extra']['POST'];
 									?>
-																			<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-lime-200 -mx-2 px-2 mb-1 border-l border-r">
+																			<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-yellow-200 -mx-2 px-2 mb-1 border-l border-r">
 											<div class="px-2 py-1 w-full break-all"><?php echo esc_html( $vv ); ?>
 											</div>
 										</div>
@@ -121,11 +121,11 @@ foreach ( $all_dwp_logs as $key => $value ) {
 										if ( is_array( $vv ) ) {
 											$vv = wp_json_encode( $vv, JSON_UNESCAPED_SLASHES ); }
 										?>
-										<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-lime-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_attr( $kk ); ?>">
+										<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-yellow-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_attr( $kk ); ?>">
 											<div class="px-2 py-1 w-full break-all"><?php echo esc_html( $kk . ' = ' . $vv ); ?>
 												<div class="opacity-0 group-hover:opacity-100 absolute right-1 inline">
-													<div class="dfwp_whitelist_pr_from_log rounded-md py-1 px-2 text-xs font-normal text-white bg-lime-600 cursor-pointer inline" with_ip='1'>Allow for this IP</div>
-													<div class="dfwp_whitelist_pr_from_log rounded-md py-1 px-2 text-xs font-normal text-white bg-lime-600 cursor-pointer inline">Allow for all</div>
+													<div class="dfwp_whitelist_pr_from_log rounded-md py-1 px-2 text-xs font-normal text-white bg-yellow-600 cursor-pointer inline" with_ip='1'>Allow for this IP</div>
+													<div class="dfwp_whitelist_pr_from_log rounded-md py-1 px-2 text-xs font-normal text-white bg-yellow-600 cursor-pointer inline">Allow for all</div>
 												</div>
 											</div>
 										</div>
@@ -142,11 +142,11 @@ foreach ( $all_dwp_logs as $key => $value ) {
 									if ( is_array( $vv ) ) {
 										$vv = wp_json_encode( $vv, JSON_UNESCAPED_SLASHES ); }
 									?>
-									<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-lime-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_attr( $kk ); ?>">
+									<div class="flex relative items-center group justify-between bg-gray-100 hover:bg-yellow-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_attr( $kk ); ?>">
 										<div class="px-2 py-1 w-full break-all"><?php echo esc_html( $kk . ' = ' . $vv ); ?>
 											<div class="opacity-0 group-hover:opacity-100 absolute right-1 inline">
-												<div class="dfwp_whitelist_gr_from_log rounded-md py-1 px-2 text-xs font-normal text-white bg-lime-600 cursor-pointer inline" with_ip='1'>Allow for this IP</div>
-												<div class="dfwp_whitelist_gr_from_log rounded-md py-1 px-2 text-xs font-normal text-white bg-lime-600 cursor-pointer inline">Allow for all</div>
+												<div class="dfwp_whitelist_gr_from_log rounded-md py-1 px-2 text-xs font-normal text-gray-700 bg-yellow-400 cursor-pointer inline" with_ip='1'>Allow for this IP</div>
+												<div class="dfwp_whitelist_gr_from_log rounded-md py-1 px-2 text-xs font-normal text-gray-700 bg-yellow-400 cursor-pointer inline">Allow for all</div>
 											</div>
 										</div>
 									</div>
@@ -160,7 +160,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 									if ( is_array( $vv ) ) {
 										$vv = wp_json_encode( $vv, JSON_UNESCAPED_SLASHES ); }
 									?>
-									<div class="flex relative items-center justify-between bg-gray-100 hover:bg-lime-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_html( $kk ); ?>">
+									<div class="flex relative items-center justify-between bg-gray-100 hover:bg-yellow-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_html( $kk ); ?>">
 										<div class="px-2 py-1 w-full break-all"><?php echo esc_html( $kk . ' = ' . $vv ); ?>
 										</div>
 									</div>
@@ -174,7 +174,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 									if ( is_array( $vv ) ) {
 										$vv = wp_json_encode( $vv, JSON_UNESCAPED_SLASHES ); }
 									?>
-									<div class="flex relative items-center justify-between bg-gray-100 hover:bg-lime-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_html( $kk ); ?>">
+									<div class="flex relative items-center justify-between bg-gray-100 hover:bg-yellow-200 -mx-2 px-2 mb-1 border-l border-r" this_key="<?php echo esc_html( $kk ); ?>">
 										<div class="px-2 py-1 w-full break-all"><?php echo esc_html( $kk . ' = ' . $vv ); ?>
 										</div>
 									</div>
@@ -186,7 +186,7 @@ foreach ( $all_dwp_logs as $key => $value ) {
 					</div>
 				</div>
 			</div>
-			<div class="inline-block show_variables_dwp_log mt-1 text-xs leading-5 text-lime-600 hover:underline cursor-pointer">Check variables to allow request</div>
+			<div class="inline-block show_variables_dwp_log mt-1 text-xs leading-5 text-yellow-600 hover:underline cursor-pointer">Check variables to allow request</div>
 			<?php if ( ! empty( $value['type'] ) && $value['type'] === 'nonce_checker' ) { ?>
 				<div class="border rounded-lg border-yellow-400 bg-yellow-50 p-2 mt-4">
 					<div class="flex">
@@ -216,6 +216,6 @@ foreach ( $all_dwp_logs as $key => $value ) {
 
 <?php if ( ! empty( $last_log_id ) ) { ?>
 	<tr class="more_tr_logs_dwp">
-		<td class="load_more_logs_dwp py-2 text-lime-600 hover:underline cursor-pointer text-center text-xs uppercase" colspan="3" last_log_id="<?php echo esc_html( $last_log_id ); ?>">Load More</td>
+		<td class="load_more_logs_dwp py-2 text-yellow-600 hover:underline cursor-pointer text-center text-xs uppercase" colspan="3" last_log_id="<?php echo esc_html( $last_log_id ); ?>">Load More</td>
 	</tr>
 <?php } ?>

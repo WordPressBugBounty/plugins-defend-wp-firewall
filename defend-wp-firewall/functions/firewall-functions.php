@@ -13,6 +13,7 @@ class Defend_WP_Firewall_Functions {
 	private $dfwp_get_plugin;
 	private $dfwp_get_theme;
 	private $dfwp_firewall_rules;
+	private $dfwp_firewall_rules_manager;
 	private $request_matched_rules                 = array();
 	private $nonce_matched_rules                   = array();
 	private $sanitize_matched_rules                = array();
@@ -23,22 +24,11 @@ class Defend_WP_Firewall_Functions {
 	private $skip_request_methods_for_key_match    = array( 'url' );
 	private $skip_request_methods_for_full_match   = array( 'url' );
 	private $rule_register_functions               = array( 'wp_check_filetype', 'defend_wp_users_can_register', 'get_post_meta', 'get_post_type', 'is_email', 'get_current_user_id', 'get_user_meta', 'defend_wp_firewall_detect_sql_injection' );
-	private $callable_action_hooks                 = array( 'wp_logout', 'do_sanitize', 'remove_action', 'remove_filter', 'shortcode_rules', 'do_full_sanitize', 'deactivate_plugin', 'wp_post_restrictions', 'wp_user_restrictions', 'run' );
+	private $callable_action_hooks                 = array( 'wp_logout', 'do_sanitize', 'remove_action', 'remove_filter', 'shortcode_rules', 'do_full_sanitize', 'deactivate_plugin', 'wp_post_restrictions', 'wp_user_restrictions', 'run', 'add_filter', 'add_action' );
 
 	public function __construct() {
-		$this->defend_wp_firewall_options = new Defend_WP_Firewall_Options();
-	}
-
-	public function get_firewall_rules() {
-		$rules = $this->defend_wp_firewall_options->get_option( 'dfwp_firewall' );
-		if ( empty( $rules ) ) {
-			return;
-		}
-		$rules = json_decode( $rules, true );
-		if ( $rules == '' || is_null( $rules ) ) {
-			return;
-		}
-		return $rules;
+		$this->defend_wp_firewall_options  = new Defend_WP_Firewall_Options();
+		$this->dfwp_firewall_rules_manager = new Defend_WP_Firewall_Rules_Manager();
 	}
 
 	public function is_enabled() {
@@ -80,15 +70,17 @@ class Defend_WP_Firewall_Functions {
 	}
 
 	public function process_request( $hook_type = 'init' ) {
+		global $defend_wp_firewall_current_hook_type;
 
 		if ( $this->pre_process_request() === false ) {
 			return false;
 		}
 
-		$firewall_rules = $this->get_firewall_rules();
+		$firewall_rules = $this->dfwp_firewall_rules_manager->get_firewall_rules();
 		if ( empty( $firewall_rules ) ) {
 			return false;
 		}
+		$defend_wp_firewall_current_hook_type = $hook_type;
 		do_action( 'defend_wp_firewall_rules_before_pre_condition_filter', $firewall_rules );
 
 		$dfwp_formated_request = $this->fetch_request();
@@ -859,21 +851,25 @@ class Defend_WP_Firewall_Functions {
 	}
 
 	public function format_firewall_title( $options ) {
-		if ( $options['block'] ) {
+		if ( ! empty( $options['block'] ) ) {
 			return 'Firewall block';
-		} elseif ( $options['do_sanitize'] ) {
+		} elseif ( ! empty( $options['do_sanitize'] ) ) {
 			return 'Firewall sanitize';
-		} elseif ( $options['do_full_sanitize'] ) {
+		} elseif ( ! empty( $options['do_full_sanitize'] ) ) {
 			return 'Firewall full sanitize';
-		} elseif ( $options['shortcode_rules'] ) {
+		} elseif ( ! empty( $options['shortcode_rules'] ) ) {
 			return 'Firewall shortcode';
+		} elseif ( ! empty( $options['add_filter'] ) ) {
+			return 'Firewall Add Filter';
+		} elseif ( ! empty( $options['add_action'] ) ) {
+			return 'Firewall Add Action';
 		} elseif ( ! empty( $options['wp_logout'] ) ) {
 			return 'Firewall user logout';
 		} elseif ( ! empty( $options['wp_user_restrictions'] ) && ! empty( $options['wp_user_restrictions']['wp_delete_user'] ) ) {
 			return 'Firewall WP User Delete';
 		} elseif ( ! empty( $options['wp_post_restrictions'] ) && ! empty( $options['wp_post_restrictions']['wp_delete_post'] ) ) {
 			return 'Firewall WP Delete Post';
-		} elseif ( $options['log'] ) {
+		} elseif ( ! empty( $options['log'] ) ) {
 			return 'Firewall Log';
 		}
 
@@ -1024,7 +1020,7 @@ class Defend_WP_Firewall_Functions {
 				$verify         = $this->verify_request( $request );
 				if ( $verify ) {
 					$rules          = ( ! empty( $request ) && ! empty( $request['rules'] ) ) ? $request['rules'] : array();
-					$firewall_rules = $this->get_firewall_rules();
+					$firewall_rules = $this->dfwp_firewall_rules_manager->get_firewall_rules( true );
 					if ( empty( $firewall_rules ) ) {
 						$firewall_rules = array();
 					}
@@ -1041,8 +1037,7 @@ class Defend_WP_Firewall_Functions {
 					if ( ! empty( $rules ) ) {
 						$firewall_rules = array_merge( $firewall_rules, $rules );
 					}
-						$result = $this->defend_wp_firewall_options->set_option( 'dfwp_firewall', sanitize_text_field( wp_json_encode( $firewall_rules ) ) );
-						$this->defend_wp_firewall_options->set_option( 'dfwp_firewall_last_sync', time() );
+						$result = $this->dfwp_firewall_rules_manager->set_rules( $firewall_rules );
 					if ( $result !== false ) {
 						$this->defend_wp_firewall_options->set_option( 'dfwp_cron_id', sanitize_text_field( $request['cron_id'] ) );
 						die( '<DFWP_RESPONSE>' . wp_json_encode( array( 'success' => 1 ) ) . '</DFWP_RESPONSE>' );

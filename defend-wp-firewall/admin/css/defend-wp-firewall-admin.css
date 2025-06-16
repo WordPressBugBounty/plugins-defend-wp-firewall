@@ -23,3 +23,163 @@
 fieldset {
     border: inherit;
 }
+.defendwp-firewall-main-container{
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.defendwp-firewall-main-container .header {
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.defendwp-firewall-main-container .left-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.defendwp-firewall-main-container .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.defendwp-firewall-main-container .logo {
+    width: 32px;
+    height: 32px;
+    background-color: #ffd700;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.defendwp-firewall-main-container .site-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.defendwp-firewall-main-container .nav {
+    display: flex;
+    align-items: center;
+}
+
+.defendwp-firewall-main-container .nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.defendwp-firewall-main-container .nav li {
+    margin: 0;
+}
+
+.defendwp-firewall-main-container .nav a {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    text-transform: uppercase;
+}
+
+.defendwp-firewall-main-container .nav a.active {
+    background-color: #facc15;
+    color: #333;
+}
+
+.defendwp-firewall-main-container .nav a:not(.active) {
+    color: #666;
+}
+
+.defendwp-firewall-main-container .nav a:not(.active):hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.defendwp-firewall-main-container .status-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.defendwp-firewall-main-container .status-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    margin: 7px 3px 0 3px;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+.defendwp-firewall-main-container .status-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+}
+
+.defendwp-firewall-main-container .status-number {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.defendwp-firewall-main-container .status-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.defendwp-firewall-main-container .status-description {
+    font-size: 12px;
+    line-height: 1.2;
+}
+.defendwp-firewall-main-container .logo-image{
+    height: 20px;
+}
+.defendwp-firewall-main-container li a:visited {
+    color: #374151;
+}
+.defendwp-firewall-main-container .settings li a.active {
+    background-color: #f3f4f6;
+    box-shadow: inset -3px 0 0 #facc15;
+}
+
+.defendwp-firewall-main-container .save_settings_dwp{
+    background-color: #facc15;
+    border: 0;
+    color: #333;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 3px 15px;
+}
+.defendwp-firewall-main-container .save_settings_dwp_submit{
+    position: sticky;
+    margin: 0px;
+    padding: 20px;
+    bottom: 0;
+    margin-top: auto;
+    border-top: 1px solid #e5e7eb;
+}
+.defendwp-firewall-main-container .status-section:hover {
+    color: #166534;
+}

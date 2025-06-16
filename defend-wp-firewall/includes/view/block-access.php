@@ -13,7 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Access denied by DefendWP</title>
-	<?php wp_head(); ?>
+	<?php
+	global $defend_wp_firewall_current_hook_type;
+	if ( ! wp_doing_ajax() && $defend_wp_firewall_current_hook_type != 'plugins_loaded' ) {
+		wp_head();
+	}
+
+	?>
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;background-color: #D0D5DE;height: 100vh;padding: 50px 10px 10px;box-sizing: border-box;margin: 0;">

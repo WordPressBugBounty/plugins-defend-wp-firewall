@@ -12,9 +12,11 @@ class Defend_WP_Firewall_Service {
 	private $update_site_meta = DEFEND_WP_FIREWALL_SERVICE_URL . '/update-site-meta';
 	private $sync_site        = DEFEND_WP_FIREWALL_SERVICE_URL . '/sync-site';
 	public $defend_wp_firewall_options;
+	public $dfwp_firewall_rules_manager;
 
 	public function __construct() {
-		$this->defend_wp_firewall_options = new Defend_WP_Firewall_Options();
+		$this->defend_wp_firewall_options  = new Defend_WP_Firewall_Options();
+		$this->dfwp_firewall_rules_manager = new Defend_WP_Firewall_Rules_Manager();
 		$this->define_hooks();
 	}
 
@@ -195,8 +197,7 @@ class Defend_WP_Firewall_Service {
 		$response = $this->send_sevice_request( $params, $this->add_site_url );
 		if ( ! empty( $response ) && ! empty( $response['status'] ) && $response['status'] === 'success' ) {
 			if ( ! empty( $response['rules'] ) ) {
-				$this->defend_wp_firewall_options->set_option( 'dfwp_firewall_last_sync', time() );
-				return $this->defend_wp_firewall_options->set_option( 'dfwp_firewall', wp_json_encode( $response['rules'] ), true );
+				return $this->dfwp_firewall_rules_manager->set_rules( $response['rules'] );
 			}
 		}
 
@@ -217,10 +218,9 @@ class Defend_WP_Firewall_Service {
 		$response                 = $this->send_sevice_request( $params, $this->add_site_url );
 		if ( ! empty( $response ) && ! empty( $response['status'] ) && $response['status'] === 'success' ) {
 			if ( ! empty( $response['rules'] ) ) {
-				$this->defend_wp_firewall_options->set_option( 'dfwp_firewall_last_sync', time() );
-				return $this->defend_wp_firewall_options->set_option( 'dfwp_firewall', wp_json_encode( $response['rules'] ), true );
+				return $this->dfwp_firewall_rules_manager->set_rules( $response['rules'] );
 			} elseif ( $this->is_connected() ) {
-					return true;
+				return true;
 			}
 		}
 		return $response;
@@ -239,9 +239,9 @@ class Defend_WP_Firewall_Service {
 		if ( ! empty( $response ) && ! empty( $response['status'] ) && $response['status'] === 'success' ) {
 			$this->defend_wp_firewall_options->set_option( 'dfwp_firewall_last_sync', time() );
 			if ( ! empty( $response['rules'] ) ) {
-				return $this->defend_wp_firewall_options->set_option( 'dfwp_firewall', wp_json_encode( $response['rules'] ), true );
+				return $this->dfwp_firewall_rules_manager->set_rules( $response['rules'] );
 			} else {
-				$this->defend_wp_firewall_options->delete_option( 'dfwp_firewall' );
+				$this->dfwp_firewall_rules_manager->delete_rules();
 			}
 		}
 
@@ -258,10 +258,9 @@ class Defend_WP_Firewall_Service {
 		$response = $this->send_sevice_request( $params, $this->update_ptc );
 		if ( ! empty( $response ) && ! empty( $response['status'] ) && $response['status'] === 'success' ) {
 			if ( ! empty( $response['rules'] ) ) {
-				$this->defend_wp_firewall_options->set_option( 'dfwp_firewall_last_sync', time() );
-				return $this->defend_wp_firewall_options->set_option( 'dfwp_firewall', wp_json_encode( $response['rules'] ), true );
+				return $this->dfwp_firewall_rules_manager->set_rules( $response['rules'] );
 			} else {
-				$this->defend_wp_firewall_options->delete_option( 'dfwp_firewall' );
+				$this->dfwp_firewall_rules_manager->delete_rules();
 			}
 		} else {
 			$this->set_dfwp_send_ptc_update_init_time_option();
@@ -484,7 +483,7 @@ class Defend_WP_Firewall_Service {
 		$this->defend_wp_firewall_options->delete_option( 'dfwp_pub_key' );
 		$this->defend_wp_firewall_options->delete_option( 'dfwp_send_ptc_update' );
 		$this->defend_wp_firewall_options->delete_option( 'dfwp_activation_key' );
-		$this->defend_wp_firewall_options->delete_option( 'dfwp_firewall' );
+		$this->dfwp_firewall_rules_manager->delete_rules();
 		$this->defend_wp_firewall_options->delete_option( 'dfwp_firewall_last_sync' );
 		$this->defend_wp_firewall_options->delete_option( 'dfwp_send_ptc_update_init_time' );
 	}

@@ -119,7 +119,7 @@ class Defend_WP_Firewall_Settings {
 	}
 
 	public function dfwp_settings_options_firewall( $setting_options, $all_configs_dwp ) {
-		$nav_html  = '<li><a href="#" class="bg-lime-200  block rounded-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-system-tweaks">Firewall</a><li>';
+		$nav_html  = '<li><a href="#" class=" active block rounded-s-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900 " data-navid="dfwp-system-tweaks">Firewall</a><li>';
 		$main_html = '';
 		ob_start();
 		?>
@@ -302,7 +302,7 @@ class Defend_WP_Firewall_Settings {
 		$allowed_post_tags   = $this->allowed_post_tags();
 
 		$nav_html  = '<li>
-                <a href="#" class=" block rounded-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-ips-action">IPs</a>
+                <a href="#" class=" block rounded-s-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-ips-action">IPs</a>
             </li>';
 		$main_html = '';
 		ob_start();
@@ -345,7 +345,7 @@ class Defend_WP_Firewall_Settings {
 		$allowed_post_tags   = $this->allowed_post_tags();
 
 		$nav_html  = '<li>
-                <a href="#" class=" block rounded-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-requests-whitelist">Whitelisted Requests</a>
+                <a href="#" class=" block rounded-s-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-requests-whitelist">Whitelisted Requests</a>
             </li>';
 		$main_html = '';
 		ob_start();
@@ -383,7 +383,7 @@ class Defend_WP_Firewall_Settings {
 	}
 
 	public function dfwp_settings_notification( $setting_options, $all_configs_dwp ) {
-		$nav_html  = '<li><a href="#" class="block rounded-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-notifcation">Notification</a><li>';
+		$nav_html  = '<li><a href="#" class="block rounded-s-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-notifcation">Notification</a><li>';
 		$main_html = '';
 		ob_start();
 		?>
@@ -397,7 +397,7 @@ class Defend_WP_Firewall_Settings {
 								<label for="email" class="sr-only">Email</label>
 								<input type="email" name="email" id="dfwp_join_email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com" value="<?php echo ! empty( $all_configs_dwp['dfwp_join_email'] ) ? esc_html( $all_configs_dwp['dfwp_join_email'] ) : ''; ?>">
 							</div>
-							<button type="submit" class="mt-3 inline-flex w-full items-center justify-center rounded-md bg-lime-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600 sm:ml-3 sm:mt-0 sm:w-auto" id="dfwp_join">Save</button>
+							<button type="submit" class="mt-3 inline-flex w-full items-center justify-center rounded-md bg-yellow-400 px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600 sm:ml-3 sm:mt-0 sm:w-auto" id="dfwp_join">Save</button>
 						</form>
 					</div>
 					<div class="text-center mt-2">
@@ -417,7 +417,7 @@ class Defend_WP_Firewall_Settings {
 	}
 
 	public function dfwp_settings_advanced( $setting_options, $all_configs_dwp ) {
-		$nav_html  = '<li><a href="#" class="block rounded-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-advanced">Advanced</a><li>';
+		$nav_html  = '<li><a href="#" class="block rounded-s-md px-3 py-2 text-sm leading-6 font-semibold text-gray-700 whitespace-nowrap dfwp-nav-item hover:bg-gray-100 hover:text-gray-900" data-navid="dfwp-advanced">Advanced</a><li>';
 		$main_html = '';
 		ob_start();
 		?>
@@ -439,7 +439,7 @@ class Defend_WP_Firewall_Settings {
 										?>
 									</p>
 									<div class="flex">
-										<button class="sync_firewall_dfwp inline-flex items-center justify-center rounded-md bg-lime-600 ml-2 px-2 py-1 text-sm font-medium text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-auto top-px">Sync Firewall</button>
+										<button class="sync_firewall_dfwp inline-flex items-center justify-center rounded-md bg-yellow-400 ml-2 px-2 py-1 text-sm font-medium text-gray-700 shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-auto top-px">Sync Firewall</button>
 										<button class="revoke_connect_firewall_dfwp inline-flex items-center justify-center rounded-md bg-red-600 ml-2 px-2 py-1 text-sm font-medium text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 w-auto top-px">Revoke & Connect</button>
 									</div>
 									

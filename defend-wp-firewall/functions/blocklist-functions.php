@@ -135,7 +135,7 @@ class Defend_WP_Firewall_Blocklist_Functions {
 			<div class=" rounded-tl-md rounded-tr-md relative flex flex-col border p-4 focus:outline-none">
 				<div class="w-full relative">
 					<input type="text" class="block_ip_dfwp_settings_val block w-full rounded-md border-0 py-1.5 text-gray-900 font-mono shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.0.0.0">
-				<button class=" block_ip_from_settings_dfwp absolute inline-flex items-center justify-center rounded-sm bg-lime-600 px-2 py-1 text-xs font-normal text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-auto end-px top-px m-0.5" this_type="IP">Add</button>
+				<button class=" block_ip_from_settings_dfwp absolute inline-flex items-center justify-center rounded-sm bg-yellow-400 px-2 py-1 text-xs font-normal text-gray-700 shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-auto end-px top-px m-0.5" this_type="IP">Add</button>
 				</div>
 			</div>
 			<?php
@@ -151,7 +151,7 @@ rounded-bl-md rounded-br-md <?php } ?> relative flex flex-row border px-4 py-3 f
 								<span id="pricing-plans-0-label" class="font-normal font-mono text-xs break-all"><?php echo esc_html( $vv['value'] ); ?></span>
 							</span>
 							<span id="pricing-plans-0-description-0" class="ml-6 pl-1 text-xs md:ml-0 md:pl-0 md:text-center">
-								<a href="#" class="remove_single_blocklist_dfwp font-normal text-lime-600 hover:underline" this_id="<?php echo esc_html( $vv['id'] ); ?>" this_type="IP">Remove</a>
+								<a href="#" class="remove_single_blocklist_dfwp font-normal text-yellow-600 hover:underline hover:text-yellow-600" this_id="<?php echo esc_html( $vv['id'] ); ?>" this_type="IP">Remove</a>
 							</span>
 						</div>
 					<?php

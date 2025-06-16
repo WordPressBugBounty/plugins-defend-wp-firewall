@@ -50,31 +50,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0" onClick="defend_wp_firewall_refresh_page()">Connect again</button>
 						</div>
 					</div>
-					<div class="dfwp-success dfwp-mail-wrapper">
-						<hr style="margin: 30px 0 20px;">
-						<h4 class="text-base font-semibold leading-6 text-gray-900 text-sm text-center ">Join our mailing list</h4>
-						<div class="mt-2 max-w-xl text-xs text-gray-500 text-center ">
-							<p>Get occasional emails of latest product updates and other important information</p>
-						</div>
-						<form class="mt-5 sm:flex sm:items-center justify-center">
-							<div class="w-full sm:max-w-xs">
-								<label for="email" class="sr-only">Email</label>
-								<input type="email" name="email" id="dfwp_join_email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="you@example.com">
-							</div>
-							<button type="submit" class="mt-3 inline-flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:ml-3 sm:mt-0 sm:w-auto" id="dfwp_join">Join</button>
-						</form>
-						<div class="text-center mt-2">
-							<p class="dfwp-join-error text-sm  text-red-600">
-							<p class="dfwp-join-res text-sm  text-red-600">
-							</p>
-						</div>
-						<div class="mt-3 text-sm leading-6 sm:flex sm:items-center justify-center">
-							<a href="<?php echo esc_url( DEFEND_WP_FIREWALL_LATER_URL ); ?>" class="font-semibold text-indigo-600 hover:text-indigo-500">
-								I'll do this later
-								<span aria-hidden="true"> &rarr;</span>
-							</a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

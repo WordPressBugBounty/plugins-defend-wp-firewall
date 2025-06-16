@@ -79,7 +79,7 @@ class Defend_WP_Firewall_Constants {
 	}
 
 	public function versions() {
-		$this->define( 'DEFEND_WP_FIREWALL_VERSION', '1.1.5' );
+		$this->define( 'DEFEND_WP_FIREWALL_VERSION', '1.1.6' );
 		$this->define( 'DEFEND_WP_FIREWALL_DATABASE_VERSION', '1.0' );
 	}
 
@@ -93,12 +93,15 @@ class Defend_WP_Firewall_Constants {
 		$this->define( 'DEFEND_WP_FIREWALL_TIMEOUT', 23 );
 		$this->define( 'DEFEND_WP_FIREWALL_POST_META_BRUTE_FORCE_THRESHOLD', 900 );
 		$this->define( 'DEFEND_WP_FIREWALL_LOGS_MAX_NUM_OF_LOGS', 1000 );
-		$this->define( 'DEFEND_WP_FIREWALL_RULES_VERSION', '1.0.0' );
+		$this->define( 'DEFEND_WP_FIREWALL_RULES_VERSION', '1.1.0' );
 
 		$this->define( 'DEFEND_WP_FIREWALL_VALIDATE_FREQUENCY', 86400 );
 		$this->define( 'DEFEND_WP_FIREWALL_SERVICE_URL', 'https://cron.defendwp.org' );
+		$this->define( 'DEFEND_WP_FIREWALL_ORG_URL', 'https://defendwp.org/' );
+		$this->define( 'DEFEND_WP_FIREWALL_SERVICE_CDN_URL', 'https://cdn.defendwp.org/' );
 		$this->define( 'DEFEND_WP_FIREWALL_LIMIT_LOGIN_TRIES_COUNT', 15 );
 		$this->define( 'DEFEND_WP_FIREWALL_SETTINGS_PAGE_URL', ( admin_url( 'admin.php?page=dfwp_settings' ) ) );
+		$this->define( 'DEFEND_WP_FIREWALL_BLOCKED_REQUESTS_PAGE_URL', ( admin_url( 'admin.php?page=dfwp_logs' ) ) );
 		$this->define( 'DEFEND_WP_FIREWALL_LATER_URL', ( admin_url( 'admin.php?page=dfwp_settings&dfwp_join=later' ) ) );
 	}
 

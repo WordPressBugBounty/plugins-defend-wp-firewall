@@ -324,7 +324,7 @@ class Defend_WP_Firewall_Admin {
 			return;
 		}
 
-		wp_safe_redirect( DEFEND_WP_FIREWALL_SETTINGS_PAGE_URL );
+		wp_safe_redirect( DEFEND_WP_FIREWALL_BLOCKED_REQUESTS_PAGE_URL );
 	}
 
 	/**
@@ -340,7 +340,7 @@ class Defend_WP_Firewall_Admin {
 		if ( ! empty( $defend_wp_firewall_all_configs['dfwp_pub_key'] ) && $is_pro_activated ) {
 			return;
 		}
-		if ( empty( $defend_wp_firewall_all_configs['dfwp_pub_key'] ) || ( empty( $defend_wp_firewall_all_configs['dfwp_join_email'] ) && empty( $defend_wp_firewall_all_configs['defend_wp_join_later'] ) ) ) {
+		if ( empty( $defend_wp_firewall_all_configs['dfwp_pub_key'] ) ) {
 			include_once __DIR__ . '/views/defend-wp-firewall-initial-setup.php';
 			exit;
 		}
